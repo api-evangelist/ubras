@@ -1,0 +1,38 @@
+generated: '2026-07-21'
+method: searched
+source: https://ubras.com/.well-known/openid-configuration
+description: >-
+  Authentication profile of Ubras's machine-facing surface, captured from the
+  live discovery documents on ubras.com (the international Shopify
+  storefront). Customer identity uses Shopify customer accounts OIDC (issuer
+  https://shopify.com/authentication/52594442401), published at both
+  /.well-known/openid-configuration and /.well-known/oauth-authorization-server
+  (identical documents, saved in well-known/). The storefront MCP endpoint
+  (/api/mcp) and the read-only product JSON endpoints are anonymous; the UCP
+  shopping MCP (/api/ucp/mcp) requires a UCP agent profile rather than an API
+  key. Ubras publishes no separate first-party developer API keys or OAuth
+  program of its own.
+summary:
+  types: [openIdConnect]
+  oauth2_flows: [authorizationCode]
+  anonymous_surfaces:
+    - https://ubras.com/api/mcp (storefront MCP, tools/list unauthenticated)
+    - https://ubras.com/products/{handle}.json (read-only product JSON)
+schemes:
+  - name: shopify-customer-accounts-oidc
+    type: openIdConnect
+    openIdConnectUrl: https://ubras.com/.well-known/openid-configuration
+    issuer: https://shopify.com/authentication/52594442401
+    authorizationUrl: https://shopify.com/authentication/52594442401/oauth/authorize
+    tokenUrl: https://shopify.com/authentication/52594442401/oauth/token
+    jwks_uri: https://shopify.com/authentication/52594442401/.well-known/jwks.json
+    grant_types: [authorization_code, refresh_token, 'urn:ietf:params:oauth:grant-type:jwt-bearer']
+    response_types: [code]
+    token_endpoint_auth_methods: [client_secret_basic]
+    pkce: [S256]
+    scopes_supported:
+      - openid
+      - email
+      - customer-account-api:full
+      - customer-account-mcp-api:full
+    sources: [well-known/ubras-openid-configuration.json]

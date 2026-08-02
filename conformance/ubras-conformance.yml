@@ -1,0 +1,49 @@
+generated: '2026-07-21'
+method: searched
+source: https://ubras.com/.well-known/ucp
+description: >-
+  Standards conformance observed on Ubras's international storefront
+  (ubras.com, Shopify). Every entry below was verified against a live
+  response on 2026-07-21; no compliance program or certification page is
+  published by Ubras itself, so no Compliance pointer is asserted.
+standards:
+  - id: ucp-2026-04-08
+    name: Universal Commerce Protocol
+    conforms: true
+    evidence: >-
+      GET https://ubras.com/.well-known/ucp returned the UCP merchant profile
+      (versions 2026-04-08 and 2026-01-23) with shopping service, capabilities,
+      and payment handlers (saved: well-known/ubras-ucp.json).
+  - id: mcp
+    name: Model Context Protocol
+    conforms: true
+    evidence: >-
+      POST https://ubras.com/api/mcp tools/list answered JSON-RPC 2.0 with five
+      tools (captured in mcp/ubras-mcp.yml); UCP shopping MCP documented at
+      /api/ucp/mcp.
+  - id: oidc
+    name: OpenID Connect discovery
+    conforms: true
+    evidence: >-
+      GET https://ubras.com/.well-known/openid-configuration returned the
+      Shopify customer-accounts OIDC document (issuer
+      https://shopify.com/authentication/52594442401).
+  - id: rfc8414-oauth-authorization-server-metadata
+    name: OAuth 2.0 Authorization Server Metadata (RFC 8414)
+    conforms: true
+    evidence: >-
+      GET https://ubras.com/.well-known/oauth-authorization-server returned 200
+      application/json (identical to the OIDC discovery document).
+  - id: llms-txt
+    name: llms.txt agent discovery
+    conforms: true
+    evidence: >-
+      GET https://ubras.com/llms.txt returned 200 text/markdown (saved
+      verbatim: llms/ubras-llms.txt); canonical /agents.md also 200.
+  - id: rfc9116-security-txt
+    name: security.txt (RFC 9116)
+    conforms: false
+    evidence: >-
+      GET https://ubras.com/.well-known/security.txt returned 404;
+      https://www.ubras.cn/.well-known/security.txt returned 302 to the
+      homepage.

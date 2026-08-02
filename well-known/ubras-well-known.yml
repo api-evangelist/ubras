@@ -1,0 +1,72 @@
+generated: '2026-07-21'
+method: searched
+description: >-
+  Results of probing the /.well-known/ and agent-discovery surface of Ubras's
+  two web properties: ubras.com (international Shopify storefront) and
+  www.ubras.cn (Chinese official site). Status is the HTTP code observed at
+  fetch time. ubras.com is a Shopify store, so it publishes the Shopify
+  customer-accounts OIDC discovery documents, a Universal Commerce Protocol
+  (UCP) merchant profile, an llms.txt, and a canonical /agents.md agent guide.
+  www.ubras.cn answers 302 (redirect to the homepage) for every discovery path,
+  so nothing real is published there.
+hosts:
+  - host: https://ubras.com
+    documents:
+      - path: /.well-known/security.txt
+        status: 404
+      - path: /.well-known/openid-configuration
+        status: 200
+        type: application/json
+        file: ubras-openid-configuration.json
+        note: >-
+          Shopify customer-accounts OIDC discovery; issuer
+          https://shopify.com/authentication/52594442401.
+      - path: /.well-known/oauth-authorization-server
+        status: 200
+        type: application/json
+        file: ubras-oauth-authorization-server.json
+        note: Identical content to the openid-configuration document.
+      - path: /.well-known/api-catalog
+        status: 404
+      - path: /.well-known/ai-plugin.json
+        status: 404
+      - path: /.well-known/ucp
+        status: 200
+        type: application/json
+        file: ubras-ucp.json
+        note: >-
+          UCP merchant profile (versions 2026-04-08 / 2026-01-23): shopping
+          service over MCP at https://ubrasofficial.myshopify.com/api/ucp/mcp,
+          checkout/cart/fulfillment/discount/order/catalog capabilities, Google
+          Pay + Shopify card payment handlers.
+      - path: /agents.md
+        status: 200
+        type: text/markdown
+        file: ubras-agents.md
+        note: >-
+          Canonical agent-facing description of the store (llms.txt mirrors
+          it).
+      - path: /llms.txt
+        status: 200
+        type: text/markdown
+        file: ../llms/ubras-llms.txt
+  - host: https://www.ubras.cn
+    documents:
+      - path: /.well-known/security.txt
+        status: 302
+        note: Redirects to the homepage; not a real document.
+      - path: /.well-known/openid-configuration
+        status: 302
+        note: Redirects to the homepage; not a real document.
+      - path: /.well-known/oauth-authorization-server
+        status: 302
+        note: Redirects to the homepage; not a real document.
+      - path: /.well-known/api-catalog
+        status: 302
+        note: Redirects to the homepage; not a real document.
+      - path: /.well-known/ai-plugin.json
+        status: 302
+        note: Redirects to the homepage; not a real document.
+      - path: /llms.txt
+        status: 302
+        note: Redirects to the homepage; not a real document.

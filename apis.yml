@@ -1,8 +1,29 @@
 aid: ubras
 name: Ubras
-description: 'Ubras is a company surfaced as a portfolio company of hongshan and added to the API Evangelist
-  network as a stub for enrichment. Sector: consumer. This profile is a lead awaiting the enrichment pipeline.'
+description: >-
+  Ubras is a Chinese direct-to-consumer intimate apparel brand best known for
+  popularizing sizeless (one-size) wireless bras and skin-layer basics. It
+  sells through its Chinese official site at www.ubras.cn and an international
+  Shopify storefront at ubras.com. The international store publishes a
+  genuinely agent-ready commerce surface: a Universal Commerce Protocol (UCP)
+  merchant profile at /.well-known/ucp, live MCP endpoints for catalog search,
+  cart, and buyer-approved checkout, llms.txt and agents.md agent
+  instructions, and Shopify customer-accounts OIDC discovery. Ubras is a
+  portfolio company of Hongshan (Sequoia Capital China).
 url: https://raw.githubusercontent.com/api-evangelist/ubras/refs/heads/main/apis.yml
+accessModel:
+  pricing: unknown
+  onboarding: self-serve
+  trial: false
+  try_now: false
+  public: false
+  label: Self-serve signup
+  confidence: medium
+  source:
+  - authentication
+  generated: '2026-07-22'
+  method: derived
+image: https://ubras.com/cdn/shop/files/20220928-174018.jpg?v=1664358034
 x-type: company
 x-source: vc-portfolio
 x-backed-by:
@@ -11,13 +32,72 @@ x-tier: stub
 x-tier-reason: portfolio-lead
 specificationVersion: '0.20'
 created: '2026-07-17'
-modified: '2026-07-17'
+modified: '2026-07-21'
 tags:
 - Company
 - Consumer
-apis: []
+- Retail
+- eCommerce
+- Apparel
+- Intimate Apparel
+- Direct-to-Consumer
+- Agentic Commerce
+apis:
+- name: Ubras Storefront Agent Commerce (UCP + MCP)
+  description: >-
+    Agent-facing commerce surface of the ubras.com Shopify storefront: a live
+    storefront MCP endpoint (catalog search, cart, product details, policy
+    FAQs), a Universal Commerce Protocol shopping service with buyer-approved
+    checkout, and anonymous read-only product/collection JSON endpoints.
+  humanURL: https://ubras.com/agents.md
+  baseURL: https://ubras.com/api/mcp
+  tags:
+  - Commerce
+  - MCP
+  - UCP
+  - Agents
+  - Products
+  properties:
+  - type: Documentation
+    url: https://ubras.com/agents.md
+  - type: MCPServer
+    url: mcp/ubras-mcp.yml
+common:
+- type: DomainSecurity
+  url: security/ubras-domain-security.yml
+- type: Website
+  url: https://ubras.com
+- type: Website
+  url: https://www.ubras.cn
+- type: Documentation
+  url: https://ubras.com/agents.md
+- type: Login
+  url: https://ubras.com/account/login
+- type: Support
+  url: https://ubras.com/pages/contact-us
+- type: Blog
+  url: https://ubras.com/blogs/news
+- type: PrivacyPolicy
+  url: https://ubras.com/policies/privacy-policy
+- type: TermsOfService
+  url: https://ubras.com/policies/terms-of-service
+- type: LLMsTxt
+  url: llms/ubras-llms.txt
+- type: MCPServer
+  url: mcp/ubras-mcp.yml
+- type: WellKnown
+  url: well-known/ubras-well-known.yml
+- type: Authentication
+  url: authentication/ubras-authentication.yml
+- type: Conformance
+  url: conformance/ubras-conformance.yml
 maintainers:
 - FN: Kin Lane
   email: kin@apievangelist.com
 - FN: APIs.json
   email: info@apis.io
+x-enrichment:
+  date: '2026-07-21'
+  status: enriched
+  artifacts_added: 10
+  pass: local-v1

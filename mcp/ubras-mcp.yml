@@ -1,0 +1,56 @@
+generated: '2026-07-21'
+method: searched
+status: published
+source: https://ubras.com/llms.txt
+description: >-
+  Ubras's international Shopify storefront (ubras.com) exposes two live,
+  provider-published MCP surfaces. (1) The Shopify storefront MCP at
+  https://ubras.com/api/mcp answers JSON-RPC tools/list unauthenticated — the
+  five tools below were captured verbatim from that live response on
+  2026-07-21. (2) The Universal Commerce Protocol (UCP) shopping service MCP at
+  https://ubras.com/api/ucp/mcp (canonical endpoint
+  https://ubrasofficial.myshopify.com/api/ucp/mcp per the /.well-known/ucp
+  merchant profile), documented in /agents.md and /llms.txt; it requires a UCP
+  agent profile in the request meta (an anonymous tools/list returns JSON-RPC
+  error -32001 "UCP discovery failed: Missing profile uri"). Checkout requires
+  explicit buyer approval per the store's published agent rules.
+server:
+  name: ubras-storefront
+  transport: http
+  url: https://ubras.com/api/mcp
+  auth: none (read/cart tools; checkout hands off to buyer-approved flows)
+ucp_server:
+  name: ubras-ucp-shopping
+  transport: http
+  url: https://ubras.com/api/ucp/mcp
+  canonical_url: https://ubrasofficial.myshopify.com/api/ucp/mcp
+  discovery: well-known/ubras-ucp.json
+  auth: UCP agent profile required (meta.ucp-agent.profile URI)
+  documented_flow:
+    - search_catalog
+    - create_cart
+    - create_checkout
+    - update_checkout
+    - complete_checkout
+tools:
+  - name: search_catalog
+    description: >-
+      Search for products from the online store, hosted on Shopify. Natural
+      language queries and/or filter criteria; paginated (UCP
+      dev.ucp.shopping.catalog.search capability).
+  - name: get_cart
+    description: >-
+      Get the cart including items, shipping options, discount info, and
+      checkout url for a given cart id.
+  - name: update_cart
+    description: >-
+      Perform updates to a cart, including adding/removing/updating line
+      items, buyer information, shipping details, discount codes, gift cards
+      and notes.
+  - name: search_shop_policies_and_faqs
+    description: >-
+      Used to get facts about the stores policies, products, or services.
+  - name: get_product_details
+    description: >-
+      Look up a product by ID. Pass the 'options' parameter to select a
+      specific variant for the product card.
