@@ -37,6 +37,15 @@ tags:
 - Company
 - Consumer
 - Retail
+- E-Commerce
+- Apparel
+- Intimate Apparel
+- Direct to Consumer
+- Agentic Commerce
+tags_raw:
+- Company
+- Consumer
+- Retail
 - eCommerce
 - Apparel
 - Intimate Apparel
@@ -52,6 +61,12 @@ apis:
   humanURL: https://ubras.com/agents.md
   baseURL: https://ubras.com/api/mcp
   tags:
+  - Commerce
+  - MCP
+  - UCP
+  - Agents
+  - Product
+  tags_raw:
   - Commerce
   - MCP
   - UCP
