@@ -89,6 +89,9 @@ apis:
     url: https://ubras.com/agents.md
   - type: MCPServer
     url: mcp/ubras-mcp.yml
+  x-surface: platform-generated
+  x-platform: shopify
+  x-platform-surface: storefront-mcp
 common:
 - type: DomainSecurity
   url: security/ubras-domain-security.yml
